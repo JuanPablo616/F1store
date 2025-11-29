@@ -1,3 +1,79 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-[#0A0A0F] text-white;
+}
+
+/* Animación tipo glow */
+.card-hover {
+  transition: 0.25s ease-in-out;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+/* Botón estilo F1 */
+.btn-f1 {
+  @apply bg-red-600 hover:bg-red-700 text-white font-bold tracking-wide rounded;
+  transition: 0.2s ease-in-out;
+}
+.btn-f1:hover {
+  transform: scale(1.05);
+}
+/* Tarjeta con efecto racing */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+}
+
+/* Botón racing */
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Links del header */
+.nav-link {
+  color: #e5e5e5;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  color: #ff1a1a;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Línea racing animada abajo del header */
+.racing-line {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, red, #ff9900, #ffe600, #00d0ff, red);
+  background-size: 300% 100%;
+  animation: racingMove 4s linear infinite;
+}
+
+@keyframes racingMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 300%;
+  }
+}
+
+/* Efecto sutil al hacer scroll */
+.racing-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+
