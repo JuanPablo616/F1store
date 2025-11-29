@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useCart } from "@components/CartContext";
 
 export default function Header() {
   const { data: session } = useSession();
+  const { items } = useCart();
 
   return (
     <header className="w-full bg-[#0A0B0D] border-b border-red-600 shadow-xl racing-header">
       <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
-        
-        {/* LOGO F1 */}
+
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="text-red-600 font-extrabold text-3xl tracking-tighter group-hover:tracking-widest transition-all duration-300">
             F1
@@ -21,30 +23,34 @@ export default function Header() {
 
         {/* NAV */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="nav-link">
-            Inicio
-          </Link>
-
-          <Link href="/#productos" className="nav-link">
-            Productos
-          </Link>
+          <Link href="/" className="nav-link">Inicio</Link>
+          <Link href="/#productos" className="nav-link">Productos</Link>
 
           {session && (
-            <Link href="/admin" className="nav-link text-red-400">
-              Admin
-            </Link>
+            <Link href="/admin" className="nav-link text-red-400">Admin</Link>
           )}
         </nav>
 
         {/* DERECHA */}
         <div className="flex items-center gap-4">
-          
+
           {/* Carrito */}
           <Link href="/cart" className="relative">
             <ShoppingCartOutlinedIcon
               style={{ fontSize: "28px", color: "white" }}
               className="hover:text-red-600 transition"
             />
+
+            {items.length > 0 && (
+              <span className="
+                absolute -top-2 -right-2
+                bg-red-600 text-white text-xs
+                w-5 h-5 flex items-center justify-center
+                rounded-full font-bold shadow-lg
+              ">
+                {items.length}
+              </span>
+            )}
           </Link>
 
           {/* Login / Logout */}
@@ -66,7 +72,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* LÍNEA RACING ANIMADA */}
+      {/* LÍNEA RACING */}
       <div className="racing-line"></div>
     </header>
   );
