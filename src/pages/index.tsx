@@ -23,9 +23,9 @@ export default function Home({ products, page, pages, team, q }: HomeProps) {
     return `/?${params.toString()}`;
   };
 
-  return (
-    <div className="space-y-4">
-      <h1 className="text-3xl font-bold mb-2">F1 Store</h1>
+    return (
+      <div className="space-y-4">
+        <h1 className="text-3xl font-bold mb-2">F1 Store</h1>
 
       <form method="GET" className="flex flex-wrap gap-2 mb-4">
         <input

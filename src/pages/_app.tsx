@@ -6,15 +6,28 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/globals.css";
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+// PayPal Provider
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <SessionProvider session={session}>
-      <CartProvider>
-        <Layout>
-          <Component {...pageProps} />
-          <ToastContainer />
-        </Layout>
-      </CartProvider>
+      <PayPalScriptProvider
+        options={{
+          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
+          currency: "USD",
+        }}
+      >
+        <CartProvider>
+          <Layout>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </Layout>
+        </CartProvider>
+      </PayPalScriptProvider>
     </SessionProvider>
   );
 }
